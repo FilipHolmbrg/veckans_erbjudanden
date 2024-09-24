@@ -1,17 +1,10 @@
 #imports
 import re
 
-def match_recipe(data: dict) -> dict:
+def match_recipe(data: dict, user_dict: dict) -> dict:
+    veckans_recept_förslag = {recipe: [] for recipe in user_dict.keys()}
 
-    bas_recept = {
-        'carbonara': ['pasta', 'bacon', 'ägg', 'grädde', 'parmesan'],
-        'högrev med potatis': ['högrev', 'potatis'],
-        'korvstroganoff': ['falukorv', 'ris', 'gröna ärtor', 'tomatpuré', 'passerade tomater', 'grädde'],
-                }
-
-    veckans_recept_förslag = {recipe: [] for recipe in bas_recept.keys()}
-
-    for key, values in bas_recept.items():
+    for key, values in user_dict.items():
         # print(key, values)
         current_recipe_list = [] 
         for value in values:

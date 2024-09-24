@@ -5,7 +5,7 @@ from time import sleep
 def fetch_offers(password: str, store_no: int) -> tuple:
     """Function to get weely offers based of object attributes"""
     # General url
-    if store_no == 1
+    if store_no == 1:
         url = "https://ereklamblad.se/api/squid/v4/rpc/get_offers"  
     # Create dict used for population of data and creation of datafram
     offer_dict = {
