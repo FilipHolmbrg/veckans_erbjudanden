@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='veckans_mat',
+    name='veckans_erbjudanden',
     version='0.1',
     packages=find_packages(),  # Automatically finds all packages (including veckans_mat)
     install_requires=[],
