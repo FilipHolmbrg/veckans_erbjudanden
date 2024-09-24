@@ -2,7 +2,7 @@
 import requests
 from time import sleep
 
-def fetch_offers(password: str, store_no: int) -> tuple:
+def fetch_offers(password: str, store_id: str, store_no: int) -> tuple:
     """Function to get weely offers based of object attributes"""
     # General url
     if store_no == 1:
@@ -22,12 +22,17 @@ def fetch_offers(password: str, store_no: int) -> tuple:
     # Prepare request body
     data = {
             "where": {
-                "publication_ids": [password]  # The publication ID you want to filter by
+                "publication_ids": [store_id]  # The publication ID you want to filter by
                     },
             "page": {
                 "page_size": page_size  # Max number of items per page
                     }
             }
+    
+    headers = {
+                        'Content-Type': 'application/json',  # Non required argument
+                        'X-Api-Key': password  # Using X-Api-Key header as required
+                        }
     
     for i in range(3): # Each iteration gives different results, so we need to pickup data many times to be sure to get all.
         sleep(.1)
@@ -43,7 +48,7 @@ def fetch_offers(password: str, store_no: int) -> tuple:
             else:
                 data["page"].pop("after_cursor", None)  # Remove after_cursor if starting from the first page
 
-            response = requests.post(url, json=data, headers=object.headers)
+            response = requests.post(url, json=data, headers=headers)
             
             # Check the response status code
             if response.status_code == 200:
